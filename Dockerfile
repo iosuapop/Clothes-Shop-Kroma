@@ -22,6 +22,14 @@ WORKDIR /var/www/html
 # Copiază fișierele proiectului
 COPY . .
 
+# Creaza directoarele de cache
+RUN mkdir -p bootstrap/cache \
+    && mkdir -p storage/framework/cache \
+    && mkdir -p storage/framework/sessions \
+    && mkdir -p storage/framework/views \
+    && mkdir -p storage/logs \
+    && chmod -R 777 storage bootstrap/cache \
+
 # Instalează dependințe PHP
 RUN composer install --no-interaction --optimize-autoloader
 

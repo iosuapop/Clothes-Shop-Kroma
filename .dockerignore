@@ -4,9 +4,6 @@
 /.env.*
 /storage/*.key
 /storage/debugbar
-/storage/framework/cache
-/storage/framework/sessions
-/storage/framework/views
 /storage/logs/*.log
 /public/storage
 /tests
