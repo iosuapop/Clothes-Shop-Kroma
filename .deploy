@@ -1,0 +1,17 @@
+# .deploy
+#!/bin/bash
+
+# Instalează dependințele PHP
+composer install --no-interaction --optimize-autoloader
+
+# Instalează dependințele Node.js și build-ui
+npm install
+npm run build
+
+# Cache configurări Laravel
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Rulează migrările
+php artisan migrate --force
