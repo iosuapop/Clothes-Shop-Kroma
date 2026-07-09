@@ -22,13 +22,13 @@ WORKDIR /var/www/html
 # Copiază fișierele proiectului
 COPY . .
 
-# Creaza directoarele de cache
+# Creează directoarele de cache
 RUN mkdir -p bootstrap/cache \
     && mkdir -p storage/framework/cache \
     && mkdir -p storage/framework/sessions \
     && mkdir -p storage/framework/views \
     && mkdir -p storage/logs \
-    && chmod -R 777 storage bootstrap/cache \
+    && chmod -R 777 storage bootstrap/cache
 
 # Instalează dependințe PHP
 RUN composer install --no-interaction --optimize-autoloader
@@ -47,8 +47,5 @@ RUN a2enmod rewrite
 # Configurează Apache să folosească public/ ca root
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
-# EXPOSE port 80
 EXPOSE 80
-
-# Start Apache
 CMD ["apache2-foreground"]
